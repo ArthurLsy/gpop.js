@@ -9,6 +9,8 @@ class PopUp {
         this.setPosition(param["position"]);
         this.backgroundColor = this.isset("backgroundColor") ? param['backgroundColor'] : "#ffffff"; 
         this.buttons = [];
+        this.fontSize = this.isset('fontSize') ? param["fontSize"] + "em" : "1.5em";
+        this.color = this.isset('color') ? param["color"] : "#000000";
         this.isset('transition') ? this.setTransition(param["transition"]) : this.transition = 0;
         this.isset('button') ? this.setButton(param["button"]) : NaN;
         this.buildPopUp();
@@ -109,13 +111,13 @@ class PopUp {
                 btn.style.padding = "1em";
                 btn.style.borderRadius = "0.5em";
                 btn.style.margin = " 0 5em 0 5em";
-                btn.style.fontSize = "1.5em";
+                btn.style.fontSize = this.fontSize;
             } else if (button[i]["aspect"] === "secondary") {
                 btn.style.color = "#007bff";
                 btn.style.padding = "1em";
                 btn.style.borderRadius = "0.5em";
                 btn.style.margin = " 0 5em 0 5em";
-                btn.style.fontSize = "1.5em";
+                btn.style.fontSize = this.fontSize;
             }
             btn.addEventListener('click', button[i]["callback"]);
             this.buttons.push(btn);
@@ -135,6 +137,7 @@ class PopUp {
         popup.style.left = this.left;
         popup.style.right = this.right;
         popup.style.bottom = this.bottom;
+        popup.style.color = this.color;
         if (typeof this.transform !== 'undefined') {
             popup.style.transform = this.transform;
         }
@@ -152,11 +155,14 @@ class PopUp {
         closeBtn.setAttributeNS(null, "viewBox", "0 0 16 16");
         const pathCloseBtn = document.createElementNS("http://www.w3.org/2000/svg", "path");
         pathCloseBtn.setAttributeNS(null, "d", "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708");
-        closeBtn.style.backgroundColor = '#f2f1f6';
+        closeBtn.style.backgroundColor = 'black';
+        closeBtn.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'; // Use rgba for background color with specific opacity
+        closeBtn.style.opacity = '1'; // Set opacity to 1
         closeBtn.style.borderRadius = '100%';
         closeBtn.style.padding = '0.5em';
         closeBtn.style.margin = '0.5em';
         closeBtn.appendChild(pathCloseBtn);
+
 
         closeBtn.addEventListener('click', () => {
             popup.style.transition = "opacity "+ this.transition/1000 +"s";
@@ -175,13 +181,13 @@ class PopUp {
             const title = document.createElement('div');
             title.textContent = this.title;
             title.style.fontWeight = "bold";
-            title.style.fontSize = "2em";
+            title.style.fontSize = this.fontSize;
             popup.appendChild(title)
         }
 
         const content = document.createElement('div');
         content.textContent = this.content;
-        content.style.fontSize = "1.5em";
+        content.style.fontSize = this.fontSize;
         popup.appendChild(content);
 
         const buttons = document.createElement('div');
