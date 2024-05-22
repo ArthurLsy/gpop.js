@@ -201,8 +201,21 @@ class PopUp {
 
         document.body.appendChild(popup);
 
+        if (this.isset('delay')) {
+            setTimeout(() => {
+                popup.style.transition = "opacity "+ this.transition/1000 +"s";
+                popup.style.opacity = "0";
+                setTimeout(() => {
+                    popup.remove();
+                }, this.transition); 
+            }, this.param["delay"]);
+        }
+
+
 
     }
+
 }
 
-export {PopUp};
+
+export default PopUp;
