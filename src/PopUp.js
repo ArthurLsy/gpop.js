@@ -7,7 +7,7 @@ class PopUp {
         this.title = param["title"];
         this.isset('width') ? this.setWidth(param["width"]) : this.width = "auto";
         this.setPosition(param["position"]);
-        this.backgroundColor = this.isset("backGroundColor") ? param['backGroundColor'] : "#ffffff"; 
+        this.backgroundColor = this.isset("backgroundColor") ? param['backgroundColor'] : "#ffffff"; 
         this.buttons = [];
         this.isset('transition') ? this.setTransition(param["transition"]) : this.transition = 0;
         this.isset('button') ? this.setButton(param["button"]) : NaN;
