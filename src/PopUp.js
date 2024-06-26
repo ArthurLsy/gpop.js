@@ -217,5 +217,4 @@ class PopUp {
 
 }
 
-
-export default PopUp;
+window.PopUp = PopUp;
