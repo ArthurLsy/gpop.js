@@ -138,6 +138,7 @@ class PopUp {
         popup.style.right = this.right;
         popup.style.bottom = this.bottom;
         popup.style.color = this.color;
+        popup.style.zIndex = "100px"
         if (typeof this.transform !== 'undefined') {
             popup.style.transform = this.transform;
         }
